@@ -6,7 +6,7 @@
 #    By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/10 15:24:20 by kwpark            #+#    #+#              #
-#    Updated: 2022/10/31 17:49:39 by kwpark           ###   ########.fr        #
+#    Updated: 2022/11/11 01:22:54 by kwpark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ LIBFT = libft
 
 MLX = minilibx
 
-SOURCES = 	test_img.c
+SOURCES = 	src/get_berfile.c \
+			src/key_press.c \
+			src/so_long.c \
+			src/error_check.c
 
 OBJS = $(SOURCES:.c=.o)
 
