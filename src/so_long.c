@@ -6,13 +6,13 @@
 /*   By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 19:26:56 by kwpark            #+#    #+#             */
-/*   Updated: 2022/11/11 01:28:46 by kwpark           ###   ########.fr       */
+/*   Updated: 2022/11/12 15:16:13 by kwpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	img_struct_alloc(void *mlx, t_img *img)
+static void	img_struct_alloc(void *mlx, t_img *img)
 {
 	int		w;
 	int		h;
@@ -22,6 +22,31 @@ void	img_struct_alloc(void *mlx, t_img *img)
 	img->fence = mlx_xpm_file_to_image(mlx, "img/fence.xpm", &w, &h);
 	img->chest = mlx_xpm_file_to_image(mlx, "img/chest.xpm", &w, &h);
 	img->plain = mlx_xpm_file_to_image(mlx, "img/plain.xpm", &w, &h);
+}
+
+static void	player_location_set(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < (map->width + 1) * (map->height + 1))
+	{
+		if (map->ber_line[i] == 'P')
+			break ;
+		i++;
+	}
+	map->x = i % (map->width + 1);
+	map->y = i / (map->width + 1);
+}
+
+static void	alloc_solong(t_solong *so_long)
+{
+	so_long->img = ft_calloc(1, sizeof(t_img));
+	if (!so_long->img)
+		exit(1);
+	so_long->map = ft_calloc(1, sizeof(t_map));
+	if (!so_long->map)
+		exit(1);
 }
 
 void	map_draw(t_map *map, t_img *img, void *mlx, void *win)
@@ -50,31 +75,6 @@ void	map_draw(t_map *map, t_img *img, void *mlx, void *win)
 	}
 }
 
-void	player_location_set(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < (map->width + 1) * (map->height + 1))
-	{
-		if (map->ber_line[i] == 'P')
-			break ;
-		i++;
-	}
-	map->x = i % (map->width + 1);
-	map->y = i / (map->width + 1);
-}
-
-void	alloc_solong(t_solong *so_long)
-{
-	so_long->img = ft_calloc(1, sizeof(t_img));
-	if (!so_long->img)
-		exit(1);
-	so_long->map = ft_calloc(1, sizeof(t_map));
-	if (!so_long->map)
-		exit(1);
-}
-
 int	main(int ac, char **av)
 {
 	t_solong	*so_long;
@@ -93,6 +93,7 @@ int	main(int ac, char **av)
 		64 * (so_long->map->height + 1), "mlx_project");
 	map_draw(so_long->map, so_long->img, so_long->mlx, so_long->win);
 	player_location_set(so_long->map);
+	path_error_check(so_long->map);
 	mlx_hook(so_long->win, X_EVENT_KEY_RELEASE, 0, &key_press, so_long);
 	mlx_hook(so_long->win, X_EVENT_KEY_EXIT, 0, &exit_game, so_long);
 	mlx_loop(so_long->mlx);

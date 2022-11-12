@@ -6,7 +6,7 @@
 /*   By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 16:37:01 by kwpark            #+#    #+#             */
-/*   Updated: 2022/11/11 01:23:34 by kwpark           ###   ########.fr       */
+/*   Updated: 2022/11/12 15:03:42 by kwpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
-
 
 # define X_EVENT_KEY_PRESS			2
 # define X_EVENT_KEY_RELEASE		3
@@ -60,12 +59,13 @@ typedef struct s_solong
 void	get_berfile(char *map_file, t_map *map);
 int		key_press(int keycode, t_solong *so_long);
 void	map_draw(t_map *map, t_img *img, void *mlx, void *win);
-void	map_refresh(t_map *map);
 
 void	map_error_check(t_map *map);
+void	rectangular_check(t_map *map, char *line);
+
+void	map_refresh(t_map *map);
 void	error_handler(void);
-
 int		exit_game(t_solong *so_long);
-
+void	path_error_check(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 19:27:40 by kwpark            #+#    #+#             */
-/*   Updated: 2022/11/11 00:31:52 by kwpark           ###   ########.fr       */
+/*   Updated: 2022/11/12 15:29:48 by kwpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	move_w(t_solong *so_long, int *move_cnt)
 		if (ft_strchr(map->ber_line, 'C') == NULL)
 		{
 			map->y--;
-			printf("%d\n",++(*move_cnt));
+			printf("%d\n", ++(*move_cnt));
 			exit(0);
 		}
 	}
 	else
 	{
 		map->y--;
-		printf("%d\n",++(*move_cnt));
+		printf("%d\n", ++(*move_cnt));
 	}
 	map_refresh(map);
 	map_draw(map, so_long->img, so_long->mlx, so_long->win);
@@ -53,14 +53,14 @@ void	move_s(t_solong *so_long, int *move_cnt)
 		if (ft_strchr(map->ber_line, 'C') == NULL)
 		{
 			map->y++;
-			printf("%d\n",++(*move_cnt));
+			printf("%d\n", ++(*move_cnt));
 			exit(0);
 		}
 	}
 	else
 	{
 		map->y++;
-		printf("%d\n",++(*move_cnt));
+		printf("%d\n", ++(*move_cnt));
 	}
 	map_refresh(map);
 	map_draw(map, so_long->img, so_long->mlx, so_long->win);
@@ -80,14 +80,15 @@ void	move_a(t_solong *so_long, int *move_cnt)
 		if (ft_strchr(map->ber_line, 'C') == NULL)
 		{
 			map->x--;
-			printf("%d\n",++(*move_cnt));
+			printf("%d\n", ++(*move_cnt));
+			ft_putnbr_fd(++(*move_cnt), 1);
 			exit(0);
 		}
 	}
 	else
 	{
 		map->x--;
-		printf("%d\n",++(*move_cnt));
+		printf("%d\n", ++(*move_cnt));
 	}
 	map_refresh(map);
 	map_draw(map, so_long->img, so_long->mlx, so_long->win);
@@ -107,14 +108,14 @@ void	move_d(t_solong *so_long, int *move_cnt)
 		if (ft_strchr(map->ber_line, 'C') == NULL)
 		{
 			map->x++;
-			printf("%d\n",++(*move_cnt));
+			printf("%d\n", ++(*move_cnt));
 			exit(0);
 		}
 	}
 	else
 	{
 		map->x++;
-		printf("%d\n",++(*move_cnt));
+		printf("%d\n", ++(*move_cnt));
 	}
 	map_refresh(map);
 	map_draw(map, so_long->img, so_long->mlx, so_long->win);

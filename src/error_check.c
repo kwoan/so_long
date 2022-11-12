@@ -6,17 +6,11 @@
 /*   By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:36:55 by kwpark            #+#    #+#             */
-/*   Updated: 2022/11/11 01:18:28 by kwpark           ###   ########.fr       */
+/*   Updated: 2022/11/12 14:56:51 by kwpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	error_handler(void)
-{
-	printf("Error\n");
-	exit(1);
-}
 
 static void	wall_check(t_map *map)
 {
@@ -45,8 +39,6 @@ static void	map_elem_check(t_map *map)
 
 	i = 0;
 	p_cnt = 0;
-	if (ft_strlen(map->ber_line) % (map->width + 1) != 0)
-		error_handler();
 	if (!ft_strchr(map->ber_line, 'P') \
 		|| !ft_strchr(map->ber_line, 'E') || !ft_strchr(map->ber_line, 'C'))
 		error_handler();
@@ -54,9 +46,23 @@ static void	map_elem_check(t_map *map)
 	{
 		if (map->ber_line[i] == 'P')
 			p_cnt++;
+		if (!ft_strchr("01PEC", map->ber_line[i]))
+			error_handler();
 		i++;
 	}
 	if (p_cnt > 1)
+		error_handler();
+}
+
+void	rectangular_check(t_map *map, char *line)
+{
+	int	line_len;
+
+	if (ft_strchr(line, '\n'))
+		line_len = (int)ft_strlen(line) - 2;
+	else
+		line_len = (int)ft_strlen(line) - 1;
+	if (map->width != line_len)
 		error_handler();
 }
 
@@ -75,8 +81,3 @@ void	map_error_check(t_map *map)
 	wall_check(map);
 	map_elem_check(map);
 }
-
-// void	path_error_check(t_map *map)
-// {
-	
-// }

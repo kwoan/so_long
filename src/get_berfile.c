@@ -6,26 +6,11 @@
 /*   By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 19:26:39 by kwpark            #+#    #+#             */
-/*   Updated: 2022/11/11 01:19:32 by kwpark           ###   ########.fr       */
+/*   Updated: 2022/11/12 14:58:59 by kwpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	map_refresh(t_map *map)
-{
-	char	*tmp;
-
-	tmp = ft_strchr(map->ber_line, 'P');
-	*tmp = '0';
-	map->ber_line[map->y * (map->width + 1) + map->x] = 'P';
-}
-
-int	exit_game(t_solong *so_long)
-{
-	mlx_destroy_window(so_long->mlx, so_long->win);
-	exit(0);
-}
 
 static char	*ft_strdup_without_nl(const char *s1)
 {
@@ -45,13 +30,15 @@ static char	*ft_strdup_without_nl(const char *s1)
 	return (ptr);
 }
 
-static char	*ft_strjoin_without_nl(char const *s1, char const *s2)
+static char	*ft_strjoin_without_nl(char *s1, char *s2)
 {
 	char	*res;
+	char	*tmp;
 	size_t	i;
 
 	if (!s1 || !s2)
 		return (0);
+	tmp = s1;
 	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!res)
 		return (0);
@@ -61,6 +48,7 @@ static char	*ft_strjoin_without_nl(char const *s1, char const *s2)
 	while (*s2 && *s2 != '\n')
 		res[i++] = *s2++;
 	res[i] = '\0';
+	free(tmp);
 	return (res);
 }
 
@@ -68,7 +56,6 @@ void	get_berfile(char *map_file, t_map *map)
 {
 	int		fd;
 	char	*line;
-	char	*tmp;
 
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
@@ -83,10 +70,9 @@ void	get_berfile(char *map_file, t_map *map)
 		line = get_next_line(fd);
 		if (line)
 		{
+			rectangular_check(map, line);
 			map->height++;
-			tmp = ft_strjoin_without_nl(map->ber_line, line);
-			free(map->ber_line);
-			map->ber_line = tmp;
+			map->ber_line = ft_strjoin_without_nl(map->ber_line, line);
 		}
 	}
 	close(fd);
