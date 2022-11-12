@@ -6,7 +6,7 @@
 #    By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 21:57:10 by kwpark            #+#    #+#              #
-#    Updated: 2022/11/04 22:16:22 by kwpark           ###   ########.fr        #
+#    Updated: 2022/11/12 15:33:00 by kwpark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ $(NAME) : $(OBJECTS)
 	$(AR) $(ARFLAGS) $@ $^
 
 clean :
-	$(RM) $(OBJS) $(OBJS_B)
+	$(RM) $(OBJS) $(OBJS_B) $(OBJS_GNL)
 
 fclean : clean
 	$(RM) $(NAME)
