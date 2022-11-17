@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: kwpark <kwpark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/10 15:24:20 by kwpark            #+#    #+#              #
-#    Updated: 2022/11/11 05:19:16 by kwpark           ###   ########.fr        #
+#    Updated: 2022/11/17 11:33:02 by kwpark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,14 +34,14 @@ $(NAME): $(OBJS)
 	@make -C $(LIBFT)
 	@make -C $(MLX)
 	@cp libft/libft.a ./
-	@cp minilibx/libmlx.dylib ./
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft.a libmlx.dylib
+	@cp minilibx/libmlx.a ./
+	$(CC) $(CFLAGS) -framework OpenGL -framework AppKit -o $(NAME) $(OBJS) libft.a libmlx.a
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	@rm -f $(OBJS) libft.a libmlx.dylib
+	@rm -f $(OBJS) libft.a libmlx.a
 	@make clean -C $(LIBFT)
 
 fclean: clean
