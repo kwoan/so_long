@@ -6,7 +6,7 @@
 /*   By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 21:36:55 by kwpark            #+#    #+#             */
-/*   Updated: 2022/11/12 14:56:51 by kwpark           ###   ########.fr       */
+/*   Updated: 2022/11/17 14:27:45 by kwpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	wall_check(t_map *map)
 		i++;
 	}
 	i = (map->width + 1) * map->height;
-	while (i <= map->width && map->ber_line[i])
+	while (i <= (map->width + 1) * (map->height + 1) && map->ber_line[i])
 	{
 		if (map->ber_line[i] != '1')
 			error_handler();

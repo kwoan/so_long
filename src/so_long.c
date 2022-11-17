@@ -6,7 +6,7 @@
 /*   By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 19:26:56 by kwpark            #+#    #+#             */
-/*   Updated: 2022/11/12 15:16:13 by kwpark           ###   ########.fr       */
+/*   Updated: 2022/11/17 14:27:56 by kwpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	main(int ac, char **av)
 {
 	t_solong	*so_long;
 
-	(void)av;
 	if (ac != 2)
 		error_handler();
 	so_long = ft_calloc(1, sizeof(t_solong));
