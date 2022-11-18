@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kwpark <kwpark@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: kwpark <kwpark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 19:27:40 by kwpark            #+#    #+#             */
-/*   Updated: 2022/11/12 15:29:48 by kwpark           ###   ########.fr       */
+/*   Updated: 2022/11/18 12:51:56 by kwpark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	move_a(t_solong *so_long, int *move_cnt)
 		{
 			map->x--;
 			printf("%d\n", ++(*move_cnt));
-			ft_putnbr_fd(++(*move_cnt), 1);
 			exit(0);
 		}
 	}
